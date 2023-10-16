@@ -14,7 +14,11 @@ interface LoginFormValue {
 
 const LoginForm: FC = () => {
   const navigate = useNavigate();
-  const { register, handleSubmit } = useForm<LoginFormValue>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginFormValue>();
   const onLoginFormSubmitHandler: SubmitHandler<LoginFormValue> = async (
     data
   ) => {
@@ -41,16 +45,25 @@ const LoginForm: FC = () => {
             autoComplete="off"
             type="text"
             placeholder="mylocaldiary@gmail.com"
-            {...register("id", { required: true, pattern: RegExp.emailType })}
+            {...register("id", {
+              required: "メールアドレスを入力してください",
+              pattern: {
+                value: RegExp.emailType,
+                message: "メールアドレスの形式に合わせて入力してください",
+              },
+            })}
           />
+          <p>{errors.id ? errors.id.message : ""}</p>
           <label htmlFor="pw">パスワード</label>
           <input
             css={FormInput}
             autoComplete="off"
             type="password"
             placeholder="半角英数8~20文字"
-            {...register("pw", { required: true, pattern: RegExp.pwType })}
+            {...register("pw", { required: "暗証番号を入力してください" })}
           />
+          <p>{errors.pw ? errors.pw.message : ""}</p>
+
           <div>
             <button type="submit">ログイン</button>
             <button onClick={onSignUpBtnClickHandler}>新規登録</button>
