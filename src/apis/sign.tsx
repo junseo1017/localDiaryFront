@@ -1,14 +1,18 @@
 import { AxiosResponse } from "axios";
+import axios from "axios";
 
-export const getSpotByPosition = (axios:, data) => {
+type LoginData = {
+  id: string;
+  password: string;
+};
+
+export const getLoginRequest = (data: LoginData) => {
   return axios
-    .get(`/map/find`, {
+    .get(`/login/acountAccess`, {
       params: {
-        kilometer,
-        mapX: lng,
-        mapY: lat,
-        scale,
+        id: data.id,
+        pw: data.password,
       },
     })
-    .then((res:AxiosResponse) => res.data.data);
+    .then((res: AxiosResponse) => res.data.data);
 };
