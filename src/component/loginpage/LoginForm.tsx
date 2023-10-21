@@ -23,6 +23,7 @@ const LoginForm: FC = () => {
     data
   ) => {
     console.log(data);
+    navigate({ pathname: "/" });
   };
   const onSignUpBtnClickHandler = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();

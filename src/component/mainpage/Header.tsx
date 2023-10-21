@@ -1,7 +1,8 @@
 import React from "react";
+import NavigateBtn from "../common/NavigateBtn";
 
 const Header = () => {
-  return <div>mainpage</div>;
+  return <NavigateBtn addTextProps="login" />;
 };
 
 export default Header;
