@@ -42,6 +42,7 @@ const LoginForm: FC = () => {
         <form onSubmit={handleSubmit(onLoginFormSubmitHandler)}>
           <label htmlFor="id">メールアドレス</label>
           <input
+            className="bg-indigo-500"
             css={FormInput}
             autoComplete="off"
             type="text"

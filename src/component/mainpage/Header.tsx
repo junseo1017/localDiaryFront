@@ -7,7 +7,6 @@ const Header = () => {
     <div>
       <div>
         <SearchBar />
-        <NavigateBtn addTextProps="login" />
       </div>
     </div>
   );
