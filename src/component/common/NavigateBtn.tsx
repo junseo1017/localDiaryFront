@@ -4,7 +4,7 @@ interface TextProp {
   text: string;
 }
 
-const NavigateBtn = (textProps: TextProp) => {
+const NavigateBtn: FC = (textProps: TextProp) => {
   const [textProp, setTextProp] = useState<String>(textProps.text);
 
   return <button>{textProp}</button>;
