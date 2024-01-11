@@ -7,6 +7,7 @@ import MainLoading from "../component/mainpage/MainLoading";
 const MainPage: FC = () => {
   return (
     <Suspense fallback={<MainLoading />}>
+      <h1>MainPage</h1>
       <Logo />
       <BarButton />
       <BarButton />
