@@ -1,13 +1,13 @@
 import React from "react";
+import { useRecoilValue } from "recoil";
+import { mainPageLoading } from "../../states";
 
 const Logo = () => {
+  const mainPageState = useRecoilValue(mainPageLoading);
+
   return (
-    <div className="relative w-full h-screen">
-      <img
-        className="object-cover w-full h-full"
-        src="/images/logo.png"
-        alt=""
-      />
+    <div className="relative">
+      <img className="" src="/images/logo.png" alt="" />
     </div>
   );
 };

@@ -5,3 +5,4 @@ interface ConstantStr {
 export const constProperties: ConstantStr = {
   WEBTITLE: "MyLocalDiary",
 };
+ 

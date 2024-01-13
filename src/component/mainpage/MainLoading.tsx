@@ -2,12 +2,8 @@ import React, { FC } from "react";
 
 const MainLoading: FC = () => {
   return (
-    <div className="relative w-full h-screen">
-      <img
-        className="object-cover w-full h-full"
-        src="/images/logo.png"
-        alt=""
-      />
+    <div className="flex relative w-full h-screen items-center	justify-center">
+      <img className="mx-auto" src="/images/logo.png" alt="" />
     </div>
   );
 };

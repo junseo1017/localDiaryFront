@@ -1,7 +1,8 @@
-import React, { FC, Suspense } from "react";
+import React, { FC, Suspense, useEffect } from "react";
 import Logo from "../component/common/Logo";
 import BarButton from "../component/common/BarButton";
-import { RecoilLoadable } from "recoil";
+import { useRecoilValue } from "recoil";
+import { mainPageLoading } from "../states";
 import MainLoading from "../component/mainpage/MainLoading";
 
 const MainPage: FC = () => {

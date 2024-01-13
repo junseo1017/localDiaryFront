@@ -14,3 +14,5 @@ root.render(
     <App />
   </BrowserRouter>
 );
+
+export {};
