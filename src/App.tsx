@@ -12,6 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="*" element={<div>error</div>} />
       </Routes>
     </RecoilRoot>
   );

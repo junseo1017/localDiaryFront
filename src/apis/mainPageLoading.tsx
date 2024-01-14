@@ -2,8 +2,12 @@ import { AxiosResponse } from "axios";
 import axios from "axios";
 
 const getMainPage: () => Promise<string> = async () => {
-  const res = await axios.get(`/main`);
-  return res.data;
+  try {
+    const res = await axios.get(`/main`);
+    return res.data;
+  } catch (error) {
+    throw new Error("通信に失敗しました。");
+  }
 };
 
 export default getMainPage;
