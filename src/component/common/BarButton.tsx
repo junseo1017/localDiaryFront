@@ -1,9 +1,7 @@
 import React from "react";
 
-
 const BarButton = () => {
-
-  return <div></div>;
+  return <div className="">logIn</div>;
 };
 
 export default BarButton;
