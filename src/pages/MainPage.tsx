@@ -9,12 +9,14 @@ const MainPage: FC = () => {
   return (
     <ErrorBoundary fallback={<ErrorPage />}>
       <Suspense fallback={<MainLoading />}>
-        <div className="flex flex-col space-x relative w-full h-screen items-center	justify-start	">
-          <MainLogo />
-          <div>
-            <BarButton />
-            <BarButton />
-          </div>
+        <div className="space-x relative w-full h-screen">
+          <main className="flex flex-col h-full items-center justify-center	pb-10vh">
+            <MainLogo />
+            <div>
+              <BarButton />
+              <BarButton />
+            </div>
+          </main>
         </div>
       </Suspense>
     </ErrorBoundary>

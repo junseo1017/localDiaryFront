@@ -10,7 +10,7 @@ const MainLogo: FC<MainLogoCss> = () => {
 
   return (
     <div>
-      <img src="/images/logo.png" alt="" />
+      <img src="/images/logoFullName.png" alt="" />
     </div>
   );
 };
