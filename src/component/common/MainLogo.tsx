@@ -9,8 +9,8 @@ const MainLogo: FC<MainLogoCss> = () => {
   const mainPageState = useRecoilValue(mainPageLoading);
 
   return (
-    <div>
-      <img src="/images/logoFullName.png" alt="" />
+    <div className="x-screen">
+      <img className="x-screen mx-auto" src="/images/logoFullName.png" alt="" />
     </div>
   );
 };
