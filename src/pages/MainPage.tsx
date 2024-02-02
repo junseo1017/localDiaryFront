@@ -24,14 +24,18 @@ const MainPage: FC = () => {
                 <PrimaryButton
                   onClickHandler={SignBtnClickHandler}
                   text={"ログイン"}
-                  bgcolor={"bg-black"}
+                  cssOption={
+                    "bg-black hover:white duration-100 ease-linear w-full rounded-lg text-white h-full"
+                  }
                 />
               </div>
               <div className="w-full h-10">
                 <PrimaryButton
                   onClickHandler={SignBtnClickHandler}
                   text={"新規登録"}
-                  bgcolor={"bg-black"}
+                  cssOption={
+                    "bg-black hover:white duration-100 ease-linear w-full rounded-lg text-white h-full"
+                  }
                 />
               </div>
             </div>

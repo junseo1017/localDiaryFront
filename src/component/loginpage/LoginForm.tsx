@@ -32,11 +32,6 @@ const LoginForm: FC = () => {
 
   return (
     <div>
-      <div>
-        <h1>
-          <Link to={"/"}>My Local Diary</Link>
-        </h1>
-      </div>
       <main>
         <h2>ログイン</h2>
         <form onSubmit={handleSubmit(onLoginFormSubmitHandler)}>
