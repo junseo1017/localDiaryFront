@@ -9,6 +9,10 @@ module.exports = {
       padding: {
         "10vh": "10vh",
       },
+
+      f_layout: {
+        width: "16rem",
+      },
     },
   },
   plugins: [],

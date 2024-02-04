@@ -16,8 +16,8 @@ const MainPage: FC = () => {
   return (
     <ErrorBoundary fallback={<ErrorPage />}>
       <Suspense fallback={<MainLoading />}>
-        <div className="space-x relative x-screen h-screen">
-          <main className="flex flex-col h-full w-4/6 mx-auto items-center justify-center	pb-10vh">
+        <div className="x-screen h-screen">
+          <main className="flex flex-col h-full w-64 mx-auto items-center justify-center	pb-10vh">
             <MainLogo />
             <div className="flex flex-col items-center w-full justify-center text-xl gap-2">
               <div className="w-full h-10">

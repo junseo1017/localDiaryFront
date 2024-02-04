@@ -15,7 +15,7 @@ const PrimaryButton: FC<PrimaryButtonType> = ({
     <div className="w-full h-full">
       <button
         onClick={onClickHandler}
-        className={cssOption + " hover:bg-white"}
+        className={cssOption}
       >
         {text}
       </button>

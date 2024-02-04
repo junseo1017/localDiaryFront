@@ -7,12 +7,14 @@ import LoginForm from "../component/loginpage/LoginForm";
 function LoginPage() {
   return (
     <>
-      <div className="w-4/6 mx-auto">
-        <Link to={"/"}>
-          <MainLogo />
-        </Link>
+      <div className="flex flex-col">
+        <div className="w-64 mx-auto m-t">
+          <Link to={"/"}>
+            <MainLogo />
+          </Link>
+        </div>
+        <LoginForm />
       </div>
-      <LoginForm />
     </>
   );
 }
