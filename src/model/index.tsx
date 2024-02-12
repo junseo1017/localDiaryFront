@@ -1,2 +1,3 @@
 import MainLogoCss from "./cssProps";
-export { MainLogoCss };
+import LoginFormType from "./LoginFormType";
+export { MainLogoCss, LoginFormType };

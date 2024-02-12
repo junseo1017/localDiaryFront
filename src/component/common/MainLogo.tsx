@@ -1,16 +1,18 @@
 /** @jsxImportSource @emotion/react */
 
 import React, { FC, useEffect } from "react";
-import { useRecoilValue } from "recoil";
-import { MainLogoCss } from "../../model";
-import { mainPageLoading } from "../../states";
+import { Link } from "react-router-dom";
 
-const MainLogo: FC<MainLogoCss> = () => {
-  const mainPageState = useRecoilValue(mainPageLoading);
-
+const MainLogo: FC = () => {
   return (
-    <div className="w-full">
-      <img className="w-full mx-auto" src="/images/logoFullName.png" alt="" />
+    <div className="w-full mb-12">
+      <Link to={"/"}>
+        <img
+          className="w-full mx-auto"
+          src="/images/logoFullNameSizeCut.png"
+          alt=""
+        />
+      </Link>
     </div>
   );
 };

@@ -3,8 +3,9 @@ import PrimaryButton from "../component/common/PrimaryButton";
 import MainLoading from "../component/mainpage/MainLoading";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorPage from "./ErrorPage";
-import MainLogo from "../component/common/MainLogo";
+import MainLogo from "../component/common/MainLogoLoadable";
 import { useNavigate } from "react-router-dom";
+import MainLogoLoadable from "../component/common/MainLogoLoadable";
 
 const MainPage: FC = () => {
   const navigate = useNavigate();
@@ -17,25 +18,21 @@ const MainPage: FC = () => {
     <ErrorBoundary fallback={<ErrorPage />}>
       <Suspense fallback={<MainLoading />}>
         <div className="x-screen h-screen">
-          <main className="flex flex-col h-full w-64 mx-auto items-center justify-center	pb-10vh">
-            <MainLogo />
+          <main className="flex flex-col h-full w-72 mx-auto items-center justify-center	pb-10vh">
+            <MainLogoLoadable />
             <div className="flex flex-col items-center w-full justify-center text-xl gap-2">
-              <div className="w-full h-10">
+              <div className="w-full h-14">
                 <PrimaryButton
                   onClickHandler={SignBtnClickHandler}
                   text={"ログイン"}
-                  cssOption={
-                    "bg-black hover:white duration-100 ease-linear w-full rounded-lg text-white h-full"
-                  }
+                  cssOption={"primary-button"}
                 />
               </div>
-              <div className="w-full h-10">
+              <div className="w-full h-14">
                 <PrimaryButton
                   onClickHandler={SignBtnClickHandler}
                   text={"新規登録"}
-                  cssOption={
-                    "bg-black hover:white duration-100 ease-linear w-full rounded-lg text-white h-full"
-                  }
+                  cssOption={"primary-button"}
                 />
               </div>
             </div>

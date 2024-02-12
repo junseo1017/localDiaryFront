@@ -3,14 +3,10 @@
 import React, { FC } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { css } from "@emotion/react";
-import { FormInput } from "../../style/component/formInput";
 import { Link, useNavigate } from "react-router-dom";
 import { RegExp } from "../../util/regEx";
-
-interface LoginFormValue {
-  id: string;
-  pw: string;
-}
+import { LoginFormType } from "../../model";
+import PrimaryButton from "../common/PrimaryButton";
 
 const LoginForm: FC = () => {
   const navigate = useNavigate();
@@ -18,8 +14,8 @@ const LoginForm: FC = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginFormValue>();
-  const onLoginFormSubmitHandler: SubmitHandler<LoginFormValue> = async (
+  } = useForm<LoginFormType>();
+  const onLoginFormSubmitHandler: SubmitHandler<LoginFormType> = async (
     data
   ) => {
     console.log(data);
@@ -30,42 +26,69 @@ const LoginForm: FC = () => {
     navigate({ pathname: "/signup" });
   };
 
-  return (
-    <div>
-      <main className="top-5">
-        <form onSubmit={handleSubmit(onLoginFormSubmitHandler)}>
-          <label htmlFor="id">メールアドレス</label>
-          <input
-            css={FormInput}
-            autoComplete="off"
-            type="text"
-            placeholder="mylocaldiary@gmail.com"
-            {...register("id", {
-              required: "メールアドレスを入力してください",
-              pattern: {
-                value: RegExp.emailType,
-                message: "メールアドレスの形式に合わせて入力してください",
-              },
-            })}
-          />
-          <p>{errors.id ? errors.id.message : ""}</p>
-          <label htmlFor="pw">パスワード</label>
-          <input
-            css={FormInput}
-            autoComplete="off"
-            type="password"
-            placeholder="半角英数8~20文字"
-            {...register("pw", { required: "暗証番号を入力してください" })}
-          />
-          <p>{errors.pw ? errors.pw.message : ""}</p>
+  const onSignIpBtnClickHandler = (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault();
+    navigate({ pathname: "/signup" });
+  };
 
-          <div>
-            <button type="submit">ログイン</button>
-            <button onClick={onSignUpBtnClickHandler}>新規登録</button>
+  return (
+    <main className="w-full">
+      <form
+        className="flex flex-col"
+        onSubmit={handleSubmit(onLoginFormSubmitHandler)}
+      >
+        <div>
+          <div className="flex flex-col mb-5">
+            <label className="form--label" htmlFor="id">
+              ID
+            </label>
+            <input
+              className="form--input"
+              autoComplete="off"
+              type="text"
+              placeholder="mylocaldiary@gmail.com"
+              {...register("id", {
+                required: "メールアドレスを入力してください",
+                pattern: {
+                  value: RegExp.emailType,
+                  message: "メールアドレスの形式に合わせて入力してください",
+                },
+              })}
+            />
+            <p>{errors.id ? errors.id.message : ""}</p>
           </div>
-        </form>
-      </main>
-    </div>
+          <div className="flex flex-col mb-5">
+            <label className="form--label" htmlFor="pw">
+              PASSWORD
+            </label>
+            <input
+              className="form--input"
+              autoComplete="off"
+              type="password"
+              placeholder="半角英数8~20文字"
+              {...register("pw", { required: "暗証番号を入力してください" })}
+            />
+            <p>{errors.pw ? errors.pw.message : ""}</p>
+          </div>
+        </div>
+        <div className="flex flex-col gap-6">
+          <div className="h-12">
+            <PrimaryButton
+              text={"ログイン"}
+              cssOption={"primary-button"}
+              onClickHandler={onSignIpBtnClickHandler}
+            />
+          </div>
+          <div className="h-12">
+            <PrimaryButton
+              text={"新規登録"}
+              onClickHandler={onSignUpBtnClickHandler}
+              cssOption={"primary-button"}
+            />
+          </div>
+        </div>
+      </form>
+    </main>
   );
 };
 
