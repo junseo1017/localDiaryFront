@@ -13,7 +13,7 @@ const PrimaryButton: FC<PrimaryButtonType> = ({
 }) => {
   return (
     <div className="w-full h-full">
-      <button onClick={onClickHandler} className={cssOption}>
+      <button onClick={onClickHandler} className={cssOption} type="button">
         {text}
       </button>
     </div>

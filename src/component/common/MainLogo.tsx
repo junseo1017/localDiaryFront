@@ -10,7 +10,7 @@ const MainLogo: FC = () => {
         <img
           className="w-full mx-auto"
           src="/images/logoFullNameSizeCut.png"
-          alt=""
+          alt="ロゴイメージ"
         />
       </Link>
     </div>

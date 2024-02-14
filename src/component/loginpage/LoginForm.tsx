@@ -1,20 +1,24 @@
 /** @jsxImportSource @emotion/react */
 
-import React, { FC } from "react";
+import React, { FC, useRef } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { css } from "@emotion/react";
 import { Link, useNavigate } from "react-router-dom";
 import { RegExp } from "../../util/regEx";
 import { LoginFormType } from "../../model";
 import PrimaryButton from "../common/PrimaryButton";
+import Divider from "../common/Divider";
 
 const LoginForm: FC = () => {
   const navigate = useNavigate();
+  const $form = useRef<HTMLFormElement>(null);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<LoginFormType>();
+
   const onLoginFormSubmitHandler: SubmitHandler<LoginFormType> = async (
     data
   ) => {
@@ -26,16 +30,19 @@ const LoginForm: FC = () => {
     navigate({ pathname: "/signup" });
   };
 
-  const onSignIpBtnClickHandler = (e: React.MouseEvent<HTMLElement>) => {
+  const onSignInBtnClickHandler = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
-    navigate({ pathname: "/signup" });
+    $form.current?.requestSubmit();
+    //navigate({ pathname: "/users" });
   };
 
   return (
     <main className="w-full">
       <form
-        className="flex flex-col"
+        id="loginForm"
+        className="flex flex-col gap-4"
         onSubmit={handleSubmit(onLoginFormSubmitHandler)}
+        ref={$form}
       >
         <div>
           <div className="flex flex-col mb-5">
@@ -55,7 +62,7 @@ const LoginForm: FC = () => {
                 },
               })}
             />
-            <p>{errors.id ? errors.id.message : ""}</p>
+            <p className="text-red-500">{errors.id ? errors.id.message : ""}</p>
           </div>
           <div className="flex flex-col mb-5">
             <label className="form--label" htmlFor="pw">
@@ -68,15 +75,16 @@ const LoginForm: FC = () => {
               placeholder="半角英数8~20文字"
               {...register("pw", { required: "暗証番号を入力してください" })}
             />
-            <p>{errors.pw ? errors.pw.message : ""}</p>
+            <p className="text-red-500">{errors.pw ? errors.pw.message : ""}</p>
           </div>
         </div>
-        <div className="flex flex-col gap-6">
+        <Divider />
+        <div className="flex flex-col gap-2">
           <div className="h-12">
             <PrimaryButton
               text={"ログイン"}
               cssOption={"primary-button"}
-              onClickHandler={onSignIpBtnClickHandler}
+              onClickHandler={onSignInBtnClickHandler}
             />
           </div>
           <div className="h-12">
