@@ -65,18 +65,17 @@
 }
 
 @layer components {
-  .form--input {
-    font-weight: 700;
-    border: none;
-  }
-  .form--input:focus {
-    outline: none;
-  }
-
   .form--label {
     font-weight: 900;
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
+  }
+
+  .form--input {
+  }
+
+  .form--input:focus {
+    outline: none;
   }
 
   .primary-button {
@@ -87,6 +86,7 @@
     height: 100%;
     border-radius: 0.5rem;
     font-size: 1.2rem;
+    font-weight: 700;
     transition: 100ms linear;
     margin-bottom: 0.5rem;
   }
@@ -94,6 +94,9 @@
     background-color: blue;
     color: #ffffff;
     border: solid 1px blue;
+  }
+  .primary-button:focus {
+    outline: none;
   }
 
   .modal--inner {
