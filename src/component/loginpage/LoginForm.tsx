@@ -1,28 +1,24 @@
 /** @jsxImportSource @emotion/react */
 
-import React, { FC, useRef } from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { css } from "@emotion/react";
 import { Link, useNavigate } from "react-router-dom";
-import { RegExp } from "../../util/regEx";
+import { CheckEmail, CheckPw } from "../../util/regEx";
 import { LoginFormType } from "../../model";
 import PrimaryButton from "../common/PrimaryButton";
 import Divider from "../common/Divider";
 
 const LoginForm: FC = () => {
   const navigate = useNavigate();
+  const [emailError, setEmailError] = useState<String>("");
+  const [passwordError, setPasswordError] = useState<String>("");
   const $form = useRef<HTMLFormElement>(null);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<LoginFormType>();
+  useEffect(() => {}, [emailError, passwordError]);
 
   const onLoginFormSubmitHandler: SubmitHandler<LoginFormType> = async (
     data
   ) => {
-    console.log(data);
     navigate({ pathname: "/" });
   };
   const onSignUpBtnClickHandler = (e: React.MouseEvent<HTMLElement>) => {
@@ -32,50 +28,46 @@ const LoginForm: FC = () => {
 
   const onSignInBtnClickHandler = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
-    $form.current?.requestSubmit();
+    const email = $form.current?.email.value;
+    const password = $form.current?.password.value;
+
+    const checkEmailResult = CheckEmail(email);
+    if (checkEmailResult != null) {
+      setEmailError(checkEmailResult);
+      return;
+    }
+
+    const checkPasswordResult = CheckPw(password);
+    if (checkPasswordResult != null) {
+      setEmailError(checkPasswordResult);
+      return;
+    }
+
+    //$form.current?.requestSubmit();
     //navigate({ pathname: "/users" });
   };
 
   return (
     <main className="w-full">
-      <form
-        id="loginForm"
-        className="flex flex-col gap-4"
-        onSubmit={handleSubmit(onLoginFormSubmitHandler)}
-        ref={$form}
-      >
-        <div>
-          <div className="flex flex-col mb-5">
-            <label className="form--label" htmlFor="id">
-              ID
-            </label>
+      <form id="loginForm" className="flex flex-col gap-4" ref={$form}>
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-col">
             <input
               className="form--input"
               autoComplete="off"
               type="text"
-              placeholder="mylocaldiary@gmail.com"
-              {...register("id", {
-                required: "メールアドレスを入力してください",
-                pattern: {
-                  value: RegExp.emailType,
-                  message: "メールアドレスの形式に合わせて入力してください",
-                },
-              })}
+              placeholder="Email"
+              name="email"
             />
-            <p className="text-red-500">{errors.id ? errors.id.message : ""}</p>
           </div>
-          <div className="flex flex-col mb-5">
-            <label className="form--label" htmlFor="pw">
-              PASSWORD
-            </label>
+          <div className="flex flex-col">
             <input
               className="form--input"
               autoComplete="off"
               type="password"
-              placeholder="半角英数8~20文字"
-              {...register("pw", { required: "暗証番号を入力してください" })}
+              placeholder="Password"
+              name="password"
             />
-            <p className="text-red-500">{errors.pw ? errors.pw.message : ""}</p>
           </div>
         </div>
         <Divider />
