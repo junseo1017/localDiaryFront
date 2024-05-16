@@ -17,7 +17,7 @@ const StartPage: FC = () => {
     <ErrorBoundary fallback={<ErrorPage />}>
       <Suspense fallback={<MainLoading />}>
         <div className="x-screen h-screen">
-          <main className="flex flex-col h-full w-72 mx-auto items-center justify-center	pb-10vh">
+          <main className="flex flex-col h-full w-72 mx-auto items-center justify-center pb-10vh">
             <MainLogoLoadable />
             <div className="flex flex-col items-center w-full justify-center text-xl gap-2">
               <div className="w-full h-14">

@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React, { Component, FC } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Link } from "react-router-dom";
 import MainLogo from "../component/common/MainLogo";
 import LoginForm from "../component/loginpage/LoginForm";
 
-function LoginPage() {
+const LoginPage: FC = () => {
   return (
     <>
       <div className="x-screen h-screen">
@@ -17,6 +17,6 @@ function LoginPage() {
       </div>
     </>
   );
-}
+};
 
 export default LoginPage;

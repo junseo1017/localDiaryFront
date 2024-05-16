@@ -1,6 +1,6 @@
-import React from "react";
+import React, { FC } from "react";
 
-const Divider = () => {
+const Divider: FC = () => {
   return <div className="border-solid border border-gray-400 "></div>;
 };
 
