@@ -1,6 +1,6 @@
 type LoginFormType = {
-  id: string;
-  pw: string;
+  email: string;
+  password: string;
 };
 
 export default LoginFormType;

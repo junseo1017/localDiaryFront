@@ -7,6 +7,7 @@ import { CheckEmail, CheckPw } from "../../util/regEx";
 import { LoginFormType } from "../../model";
 import PrimaryButton from "../common/PrimaryButton";
 import Divider from "../common/Divider";
+import { getUserInfo } from "../../apis";
 
 const LoginForm: FC = () => {
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ const LoginForm: FC = () => {
     navigate({ pathname: "/signup" });
   };
 
-  const onSignInBtnClickHandler = (e: React.MouseEvent<HTMLElement>) => {
+  const onSignInBtnClickHandler = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     const email = $form.current?.email.value;
     const password = $form.current?.password.value;
@@ -42,6 +43,10 @@ const LoginForm: FC = () => {
       setEmailError(checkPasswordResult);
       return;
     }
+    const userOb: LoginFormType = { email: email, password: password };
+    const loggedInUser = await getUserInfo(userOb);
+    console.log(loggedInUser);
+    //    navigate({ pathname: "/signin" });
 
     //$form.current?.requestSubmit();
     //navigate({ pathname: "/users" });

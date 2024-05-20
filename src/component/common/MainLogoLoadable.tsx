@@ -8,8 +8,6 @@ import { mainPageLoading } from "../../states";
 
 // 非同期実装のため（RecoilValueLoadable,Suspenseテスト用）
 const MainLogoLoadable: FC<MainLogoCss> = () => {
-  const mainPageState = useRecoilValue(mainPageLoading);
-
   return (
     <div className="w-full mb-16">
       <Link to={"/"}>

@@ -5,8 +5,8 @@ export default selector<string>({
   key: "userSignIn",
   get: async () => {
     try {
-      const response = await getUserInfo();
-      return response;
+      //      const response = await getUserInfo();
+      return "";
     } catch (e) {
       throw e;
     }

@@ -1,3 +1,3 @@
 import getMainPage from "./mainPageLoading";
-
-export { getMainPage };
+import getUserInfo from "./user";
+export { getMainPage, getUserInfo };
