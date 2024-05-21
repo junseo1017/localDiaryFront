@@ -13,15 +13,11 @@ const LoginForm: FC = () => {
   const navigate = useNavigate();
   const [emailError, setEmailError] = useState<String>("");
   const [passwordError, setPasswordError] = useState<String>("");
+
   const $form = useRef<HTMLFormElement>(null);
 
   useEffect(() => {}, [emailError, passwordError]);
 
-  const onLoginFormSubmitHandler: SubmitHandler<LoginFormType> = async (
-    data
-  ) => {
-    navigate({ pathname: "/" });
-  };
   const onSignUpBtnClickHandler = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     navigate({ pathname: "/signup" });
@@ -31,25 +27,41 @@ const LoginForm: FC = () => {
     e.preventDefault();
     const email = $form.current?.email.value;
     const password = $form.current?.password.value;
-
     const checkEmailResult = CheckEmail(email);
-    if (checkEmailResult != null) {
-      setEmailError(checkEmailResult);
-      return;
-    }
-
     const checkPasswordResult = CheckPw(password);
-    if (checkPasswordResult != null) {
-      setEmailError(checkPasswordResult);
-      return;
-    }
+
+    // if (checkEmailResult != null) {
+    //   setEmailError(checkEmailResult);
+    //   return;
+    // } else {
+    //   setEmailError("");
+    // }
+
+    // if (checkPasswordResult != null) {
+    //   setPasswordError(checkPasswordResult);
+    //   return;
+    // } else {
+    //   setPasswordError("");
+    // }
+
     const userOb: LoginFormType = { email: email, password: password };
-    const loggedInUser = await getUserInfo(userOb);
-    console.log(loggedInUser);
+    getUserInfoHandler(userOb);
     //    navigate({ pathname: "/signin" });
 
     //$form.current?.requestSubmit();
     //navigate({ pathname: "/users" });
+  };
+
+  const getUserInfoHandler = async (userOb: LoginFormType) => {
+    try {
+      const getUserInfoResult: string = await getUserInfo(userOb);
+      // log in success
+    } catch (e) {
+      console.log(e);
+      // server Error
+    } finally {
+      //
+    }
   };
 
   return (
@@ -64,6 +76,7 @@ const LoginForm: FC = () => {
               placeholder="Email"
               name="email"
             />
+            <p>{emailError ? emailError : ""}</p>
           </div>
           <div className="flex flex-col">
             <input
@@ -74,6 +87,7 @@ const LoginForm: FC = () => {
               name="password"
             />
           </div>
+          <p>{passwordError ? passwordError : ""}</p>
         </div>
         <Divider />
         <div className="flex flex-col gap-2">

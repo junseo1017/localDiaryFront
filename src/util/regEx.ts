@@ -4,7 +4,7 @@ const RegExp = {
 };
 
 export const CheckEmail = (e: string | null): string | null => {
-  if (e == null) {
+  if (!e) {
     return "メールアドレスを入力してください";
   }
 
@@ -16,7 +16,7 @@ export const CheckEmail = (e: string | null): string | null => {
 };
 
 export const CheckPw = (e: string | null): string | null => {
-  if (e == null) {
+  if (!e) {
     return "パスワードを入力してください";
   }
 

@@ -3,11 +3,10 @@
 import React, { FC, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useRecoilValue, useRecoilValueLoadable } from "recoil";
-import { MainLogoCss } from "../../model";
 import { mainPageLoading } from "../../states";
 
 // 非同期実装のため（RecoilValueLoadable,Suspenseテスト用）
-const MainLogoLoadable: FC<MainLogoCss> = () => {
+const MainLogoLoadable: FC = () => {
   return (
     <div className="w-full mb-16">
       <Link to={"/"}>
