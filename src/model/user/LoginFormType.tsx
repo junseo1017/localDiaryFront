@@ -9,3 +9,13 @@ export type UserInfo = {
   email: string;
   name: string;
 };
+
+export type LoginFormError = {
+  errorCode: string;
+  Errors: FormErrorField[];
+};
+
+export type FormErrorField = {
+  errorField: string;
+  errorMessage: string;
+};

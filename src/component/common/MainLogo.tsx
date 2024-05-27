@@ -9,7 +9,7 @@ const MainLogo: FC = () => {
       <Link to={"/"}>
         <img
           className="w-full mx-auto"
-          src="/images/logoFullNameSizeCut.png"
+          src="/images/logo.png"
           alt="ロゴイメージ"
         />
       </Link>

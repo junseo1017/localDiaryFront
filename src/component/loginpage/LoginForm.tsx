@@ -7,12 +7,14 @@ import { CheckEmail, CheckPw } from "../../util/regEx";
 import { LoginFormType } from "../../model";
 import PrimaryButton from "../common/PrimaryButton";
 import Divider from "../common/Divider";
-import { getUserInfo } from "../../apis";
+import { signin } from "../../apis";
+import { AxiosError } from "axios";
 
 const LoginForm: FC = () => {
   const navigate = useNavigate();
   const [emailError, setEmailError] = useState<String>("");
   const [passwordError, setPasswordError] = useState<String>("");
+  const [globalError, setGlobalError] = useState<String>("");
 
   const $form = useRef<HTMLFormElement>(null);
 
@@ -30,37 +32,40 @@ const LoginForm: FC = () => {
     const checkEmailResult = CheckEmail(email);
     const checkPasswordResult = CheckPw(password);
 
-    // if (checkEmailResult != null) {
-    //   setEmailError(checkEmailResult);
-    //   return;
-    // } else {
-    //   setEmailError("");
-    // }
+    if (checkEmailResult != null) {
+      setEmailError(checkEmailResult);
+    } else {
+      setEmailError("");
+    }
 
-    // if (checkPasswordResult != null) {
-    //   setPasswordError(checkPasswordResult);
-    //   return;
-    // } else {
-    //   setPasswordError("");
-    // }
+    if (checkPasswordResult != null) {
+      setPasswordError(checkPasswordResult);
+    } else {
+      setPasswordError("");
+    }
 
-    const userOb: LoginFormType = { email: email, password: password };
-    getUserInfoHandler(userOb);
-    //    navigate({ pathname: "/signin" });
-
-    //$form.current?.requestSubmit();
-    //navigate({ pathname: "/users" });
+    if (emailError == "" || passwordError == "") {
+      return;
+    }
+    const loginForm: LoginFormType = { email: email, password: password };
+    getUserInfoHandler(loginForm);
   };
 
-  const getUserInfoHandler = async (userOb: LoginFormType) => {
+  const getUserInfoHandler = async (loginForm: LoginFormType) => {
     try {
-      const getUserInfoResult: string = await getUserInfo(userOb);
-      // log in success
+      // loading component Start
+      const getUserInfoResult: string = await signin(loginForm);
+      console.log(getUserInfoResult);
+
+      // log in success,
     } catch (e) {
-      console.log(e);
-      // server Error
+      if (e instanceof AxiosError) {
+        // error
+        setGlobalError(e.message);
+      }
     } finally {
-      //
+      // loading Component End
+      console.log("execute finally");
     }
   };
 
@@ -76,7 +81,7 @@ const LoginForm: FC = () => {
               placeholder="Email"
               name="email"
             />
-            <p>{emailError ? emailError : ""}</p>
+            <p className="text-red-600">{emailError ? emailError : ""}</p>
           </div>
           <div className="flex flex-col">
             <input
@@ -87,22 +92,22 @@ const LoginForm: FC = () => {
               name="password"
             />
           </div>
-          <p>{passwordError ? passwordError : ""}</p>
+          <p className="text-red-600">{passwordError ? passwordError : ""}</p>
         </div>
         <Divider />
         <div className="flex flex-col gap-2">
           <div className="h-12">
             <PrimaryButton
-              text={"ログイン"}
-              cssOption={"primary-button"}
+              text={"Sign in"}
+              cssOption={"primary-button text-base font-medium"}
               onClickHandler={onSignInBtnClickHandler}
             />
           </div>
           <div className="h-12">
             <PrimaryButton
-              text={"新規登録"}
+              text={"Create Account"}
               onClickHandler={onSignUpBtnClickHandler}
-              cssOption={"primary-button"}
+              cssOption={"primary-button text-base font-medium"}
             />
           </div>
         </div>

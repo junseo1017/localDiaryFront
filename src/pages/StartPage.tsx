@@ -24,14 +24,14 @@ const StartPage: FC = () => {
                 <PrimaryButton
                   onClickHandler={SignBtnClickHandler}
                   text={"ログイン"}
-                  cssOption={"primary-button"}
+                  cssOption={"primary-button text-base"}
                 />
               </div>
               <div className="w-full h-14">
                 <PrimaryButton
                   onClickHandler={SignBtnClickHandler}
                   text={"新規登録"}
-                  cssOption={"primary-button"}
+                  cssOption={"primary-button text-base"}
                 />
               </div>
             </div>

@@ -1,2 +1,2 @@
-import { LoginFormType, UserInfo } from "./user/LoginFormType";
-export { UserInfo, LoginFormType };
+import { LoginFormType, UserInfo, LoginFormError } from "./user/LoginFormType";
+export { UserInfo, LoginFormType, LoginFormError };

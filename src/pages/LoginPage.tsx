@@ -9,7 +9,7 @@ import ErrorPage from "./ErrorPage";
 const LoginPage: FC = () => {
   return (
     <>
-      <div className="x-screen h-screen">
+      <div className="content-layout-form">
         <div className="flex flex-col h-full w-72 mx-auto items-center justify-center	pb-10vh">
           <div className="w-64 mx-auto m-t">
             <MainLogo />
