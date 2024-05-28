@@ -1,10 +1,10 @@
 import React, { FC, Suspense, useEffect } from "react";
-import PrimaryButton from "../component/common/PrimaryButton";
 import MainLoading from "../component/startPage/MainLoading";
 import { ErrorBoundary } from "react-error-boundary";
-import ErrorPage from "./ErrorPage";
 import { useNavigate } from "react-router-dom";
 import MainLogoLoadable from "../component/common/MainLogoLoadable";
+import { ErrorPage } from "./ErrorPage";
+import FormButton from "../component/common/form/FormButton";
 
 const StartPage: FC = () => {
   const navigate = useNavigate();
@@ -21,17 +21,15 @@ const StartPage: FC = () => {
             <MainLogoLoadable />
             <div className="flex flex-col items-center w-full justify-center text-xl gap-2">
               <div className="w-full h-14">
-                <PrimaryButton
+                <FormButton
                   onClickHandler={SignBtnClickHandler}
                   text={"ログイン"}
-                  cssOption={"primary-button text-base"}
                 />
               </div>
               <div className="w-full h-14">
-                <PrimaryButton
+                <FormButton
                   onClickHandler={SignBtnClickHandler}
                   text={"新規登録"}
-                  cssOption={"primary-button text-base"}
                 />
               </div>
             </div>

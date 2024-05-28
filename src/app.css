@@ -65,20 +65,22 @@
 }
 
 @layer components {
-  .form--label {
+  .form-label {
     font-weight: 900;
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
   }
 
-  .form--input {
+  .form-input {
+    border-bottom: 1px lightgray solid;
+    @apply w-full;
   }
 
-  .form--input:focus {
+  .form-input:focus {
     outline: none;
   }
 
-  .primary-button {
+  .form-button {
     background-color: #00329d;
     border: solid 1px #00329d;
 
@@ -91,12 +93,12 @@
     transition: 100ms linear;
     margin-bottom: 0.5rem;
   }
-  .primary-button:hover {
+  .form-button:hover {
     background-color: lightgray;
     border: 1px lightgray solid;
     color: #00329d;
   }
-  .primary-button:focus {
+  .form-button:focus {
     outline: none;
   }
 
@@ -108,10 +110,40 @@
   }
 }
 
-@layer components {
-  .content-layout-form {
-    @apply sm:x-screen h-screen;
-    @apply lg:w-4/12 h-screen;
+.common-divider {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  display: flex;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.common-divider-line {
+  margin: 0;
+  min-width: 0;
+  height: 1px;
+  flex: 1;
+  background-color: var(--color-Line);
+}
+
+.common-divider-text {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.form-container {
+  @apply w-screen h-screen;
+}
+
+@media (min-width: 600px) {
+  .form-container {
+    @apply w-2/5 h-screen mx-auto;
   }
 }
 

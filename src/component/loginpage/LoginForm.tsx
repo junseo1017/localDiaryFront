@@ -5,10 +5,11 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { CheckEmail, CheckPw } from "../../util/regEx";
 import { LoginFormType } from "../../model";
-import PrimaryButton from "../common/PrimaryButton";
-import Divider from "../common/Divider";
+import Divider from "../common/form/Divider";
 import { signin } from "../../apis";
 import { AxiosError } from "axios";
+import FormButton from "../common/form/FormButton";
+import FormInput from "../common/form/FormInput";
 
 const LoginForm: FC = () => {
   const navigate = useNavigate();
@@ -72,42 +73,22 @@ const LoginForm: FC = () => {
   return (
     <main className="w-full">
       <form id="loginForm" className="flex flex-col gap-4" ref={$form}>
-        <div className="flex flex-col gap-4">
-          <div className="flex flex-col">
-            <input
-              className="form--input"
-              autoComplete="off"
-              type="text"
-              placeholder="Email"
-              name="email"
-            />
-            <p className="text-red-600">{emailError ? emailError : ""}</p>
-          </div>
-          <div className="flex flex-col">
-            <input
-              className="form--input"
-              autoComplete="off"
-              type="password"
-              placeholder="Password"
-              name="password"
-            />
-          </div>
-          <p className="text-red-600">{passwordError ? passwordError : ""}</p>
+        <div className="flex flex-col gap-10">
+          <FormInput type="text" placeholder="Email" name="email" />
+          <FormInput type="password" placeholder="Password" name="password" />
         </div>
-        <Divider />
+        <div className="h-12">
+          <FormButton
+            text={"Sign in"}
+            onClickHandler={onSignInBtnClickHandler}
+          />
+        </div>
         <div className="flex flex-col gap-2">
+          <Divider />
           <div className="h-12">
-            <PrimaryButton
-              text={"Sign in"}
-              cssOption={"primary-button text-base font-medium"}
-              onClickHandler={onSignInBtnClickHandler}
-            />
-          </div>
-          <div className="h-12">
-            <PrimaryButton
+            <FormButton
               text={"Create Account"}
               onClickHandler={onSignUpBtnClickHandler}
-              cssOption={"primary-button text-base font-medium"}
             />
           </div>
         </div>

@@ -1,16 +1,14 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import { RecoilRoot } from "recoil";
-import { constProperties } from "./constant/constant";
-import LoginPage from "./pages/LoginPage";
-import StartPage from "./pages/StartPage";
 import "./app.css";
+import { LoginPage } from "./pages/LoginPage";
+import { SignupPage } from "./pages/SignupPage";
 function App() {
   return (
     <RecoilRoot>
       <Routes>
         <Route path="/" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
         <Route path="*" element={<div>error</div>} />
       </Routes>
     </RecoilRoot>

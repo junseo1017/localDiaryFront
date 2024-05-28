@@ -4,15 +4,16 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        xs: "480px",
-        md: "768px",
-        lg: "1024px",
-        xl: "1280px",
+        mobile: "320px",
+        tablet: "600px",
+        laptop: "1200px",
+        desktop: "1536px",
       },
       margin: {
         "5px": "5px",
       },
       padding: {
+        "5vh": "5vh",
         "10vh": "10vh",
       },
 
