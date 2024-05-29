@@ -3,22 +3,22 @@ const RegExp = {
   pwType: /^([a-zA-Z0-9]{8,20})$/,
 };
 
-export const CheckEmail = (e: string | null): string | null => {
+export const isEmailCorrect = (e: string | null): boolean => {
   if (!e) {
-    return "メールアドレスを入力してください";
+    return false;
   }
 
   if (!RegExp.emailType.test(e)) {
-    return "メールアドレス形式ではありません";
+    return false;
   }
 
-  return null;
+  return true;
 };
 
-export const CheckPw = (e: string | null): string | null => {
+export const isPwCorrect = (e: string | null): boolean => {
   if (!e) {
-    return "パスワードを入力してください";
+    return false;
   }
 
-  return null;
+  return true;
 };

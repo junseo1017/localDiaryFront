@@ -83,15 +83,13 @@
   .form-button {
     background-color: #00329d;
     border: solid 1px #00329d;
-
     color: #ffffff;
-    width: 100%;
-    height: 100%;
     border-radius: 0.5rem;
     font-size: 1.2rem;
     font-weight: 700;
     transition: 100ms linear;
     margin-bottom: 0.5rem;
+    @apply w-full h-full text-base font-medium;
   }
   .form-button:hover {
     background-color: lightgray;
@@ -108,33 +106,6 @@
     text-align: center;
     width: 12.5rem;
   }
-}
-
-.common-divider {
-  box-sizing: border-box;
-  margin: 0;
-  min-width: 0;
-  display: flex;
-  margin-top: 16px;
-  margin-bottom: 16px;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.common-divider-line {
-  margin: 0;
-  min-width: 0;
-  height: 1px;
-  flex: 1;
-  background-color: var(--color-Line);
-}
-
-.common-divider-text {
-  box-sizing: border-box;
-  margin: 0;
-  min-width: 0;
-  padding-left: 16px;
-  padding-right: 16px;
 }
 
 .form-container {
