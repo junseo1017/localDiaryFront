@@ -3,22 +3,24 @@ const RegExp = {
   pwType: /^([a-zA-Z0-9]{8,20})$/,
 };
 
-export const isEmailCorrect = (e: string | null): boolean => {
+export const isEmailError = (e: string | null): boolean => {
   if (!e) {
-    return false;
+    return true;
   }
+
+  console.log(!RegExp.emailType.test(e));
 
   if (!RegExp.emailType.test(e)) {
-    return false;
+    return true;
   }
 
-  return true;
+  return false;
 };
 
-export const isPwCorrect = (e: string | null): boolean => {
+export const isPwError = (e: string | null): boolean => {
   if (!e) {
-    return false;
+    return true;
   }
 
-  return true;
+  return false;
 };

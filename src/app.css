@@ -72,12 +72,20 @@
   }
 
   .form-input {
-    border-bottom: 1px lightgray solid;
+    border-bottom: 2px lightgray solid;
     @apply w-full;
   }
 
   .form-input:focus {
     outline: none;
+  }
+
+  .form-input-error {
+    border-bottom: rgba(215, 48, 48, 0.468) solid 2px !important ;
+  }
+
+  .form-input-error::placeholder {
+    color: rgba(215, 48, 48, 0.468);
   }
 
   .form-button {
@@ -91,7 +99,7 @@
     margin-bottom: 0.5rem;
     @apply w-full h-full text-base font-medium;
   }
-  .form-button:hover {
+  .form-button:active {
     background-color: lightgray;
     border: 1px lightgray solid;
     color: #00329d;

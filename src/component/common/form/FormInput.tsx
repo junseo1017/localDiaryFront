@@ -4,13 +4,14 @@ type FormInputType = {
   name: string;
   type: string | null;
   placeholder: string;
+  isError: boolean;
 };
 
-const FormInput: FC<FormInputType> = ({ name, placeholder, type }) => {
+const FormInput: FC<FormInputType> = ({ name, placeholder, type, isError }) => {
   return (
     <div>
       <input
-        className="form-input"
+        className={isError ? "form-input form-input-error" : "form-input"}
         autoComplete="off"
         type={type ? type : "text"}
         name={name}

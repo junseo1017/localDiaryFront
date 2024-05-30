@@ -2,7 +2,7 @@
 
 import React, { FC, useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { isEmailCorrect, isPwCorrect } from "../../util/regEx";
+import { isEmailError, isPwError } from "../../util/regEx";
 import { LoginFormType } from "../../model";
 import Divider from "../common/form/Divider";
 import { signin } from "../../apis";
@@ -15,13 +15,14 @@ import FormButtonLoading from "../common/form/FormButtonLoading";
 const LoginForm: FC = () => {
   const navigate = useNavigate();
   const [emailError, setEmailError] = useState<boolean>(false);
-  const [passwordError, setPasswordError] = useState<boolean>(false);
+  const [pwError, setPwError] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [globalError, setGlobalError] = useState<String>("");
-
   const $form = useRef<HTMLFormElement>(null);
 
-  useEffect(() => {}, [emailError, passwordError]);
+  useEffect(() => {
+    console.log(globalError);
+  }, [emailError, pwError, globalError]);
 
   const onSignUpBtnClickHandler = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
@@ -33,10 +34,14 @@ const LoginForm: FC = () => {
     e.preventDefault();
     const email = $form.current?.email.value;
     const password = $form.current?.password.value;
-    const correctEmail = isEmailCorrect(email);
-    const correctPw = isPwCorrect(password);
 
-    if (!correctEmail || !correctPw) {
+    const emailErrorFlag = isEmailError(email);
+    const pwErrorFlag = isPwError(password);
+    setEmailError(emailErrorFlag);
+    setPwError(pwErrorFlag);
+
+    if (emailErrorFlag || pwErrorFlag) {
+      setIsLoading(false);
       return;
     }
 
@@ -47,8 +52,9 @@ const LoginForm: FC = () => {
   const getUserInfoHandler = async (loginForm: LoginFormType) => {
     try {
       const getUserInfoResult: string = await signin(loginForm);
-      console.log(getUserInfoResult);
+      sessionStorage.setItem("uId", getUserInfoResult);
       // log in success,
+      navigate("/");
     } catch (e) {
       if (e instanceof AxiosError) {
         // error
@@ -64,8 +70,18 @@ const LoginForm: FC = () => {
     <main className="w-full">
       <form id="loginForm" className="flex flex-col gap-4" ref={$form}>
         <div className="flex flex-col gap-10">
-          <FormInput type="text" placeholder="Email" name="email" />
-          <FormInput type="password" placeholder="Password" name="password" />
+          <FormInput
+            isError={emailError}
+            type="text"
+            placeholder="Email"
+            name="email"
+          />
+          <FormInput
+            isError={pwError}
+            type="password"
+            placeholder="Password"
+            name="password"
+          />
         </div>
         <div className="h-12">
           {isLoading ? (
