@@ -11,6 +11,7 @@ import FormButton from "../common/form/FormButton";
 import FormInput from "../common/form/FormInput";
 import { LineWave } from "react-loader-spinner";
 import FormButtonLoading from "../common/form/FormButtonLoading";
+import FormMessageModal from "../common/form/FormMessageModal";
 
 const LoginForm: FC = () => {
   const navigate = useNavigate();
@@ -103,6 +104,7 @@ const LoginForm: FC = () => {
           </div>
         </div>
       </form>
+      <FormMessageModal message="TEST MESSAGE" />
     </main>
   );
 };
